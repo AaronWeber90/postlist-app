@@ -32,13 +32,19 @@ const StyledTitle = styled.div`
     padding: 0.7rem;
   }
 
+  h2 {
+    font-size: 0.85em;
+    font-family: "Roboto", sans-serif;
+    color: #22272a;
+  }
+
   &.open-post {
     background: #2c6380;
     color: #fff;
   }
 
-  h2 {
-    font-size: 0.85em;
+  &.open-post h2 {
+    color: #fff;
   }
 `;
 
@@ -47,6 +53,7 @@ const StyledBody = styled.div`
   color: #22272a;
   font-size: 0.8em;
   line-height: 1.4;
+  font-family: "Roboto", sans-serif;
 `;
 
 const StyledButton = styled.button`
@@ -63,10 +70,6 @@ const StyledButton = styled.button`
 
 export default function Post({ id, title, body, onClick }) {
   const [isActive, setIsActive] = useState(false);
-
-//   function togglePost(e) {
-//     setIsActive(!isActive);
-//   }
 
   return (
     <StyledPost>
