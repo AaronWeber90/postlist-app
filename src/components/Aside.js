@@ -1,22 +1,15 @@
-import react, { useState } from "react";
+import {useState} from "react";
 import styled from "styled-components";
 
 const StyledAside = styled.aside`
-  padding: 2em 1em;
-
-  @media (min-width: 500px) {
-    position: absolute;
-    left: 100%;
-    top: 0;
-    height: 100%;
-  }
-
-  div {
+  section {
     position: sticky;
     top: 2em;
     padding: 1em;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     border-radius: 0.2em;
+    margin-bottom: 1em;
+    min-width: 200px;
   }
 
   form + form {
@@ -35,6 +28,7 @@ const StyledAside = styled.aside`
     border: none;
     // box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
     background: #d2dcde21;
+    width: 100%;
   }
 
   input + input {
@@ -50,6 +44,7 @@ const StyledAside = styled.aside`
     cursor: pointer;
     background: #d2dcde;
     font-weight: bolder;
+    font-size: 1em;
   }
 
   input[type="submit"]:hover {
@@ -57,11 +52,21 @@ const StyledAside = styled.aside`
     color: #fff;
     transition: 100ms;
   }
+
+  .submit-container {
+    position: relative;
+  }
+
+  @media (min-width: 800px) {
+    position: absolute;
+    left: 100%;
+    top: 0;
+    height: 100%;
+    padding: 2em 1em;
+  }
 `;
 
 export default function Aside(props) {
-  const [searchQuery, setSearchQuery] = useState("");
-
   const [newPostData, setNewPostData] = useState({
     title: "",
     body: "",
@@ -80,7 +85,7 @@ export default function Aside(props) {
 
   return (
     <StyledAside>
-      <div>
+      <section>
         <form>
           <label>
             <h3>Search post</h3>
@@ -103,6 +108,7 @@ export default function Aside(props) {
             value={newPostData.title}
             name="title"
             onChange={handleFormData}
+            required
           />
           <input
             type="text"
@@ -110,22 +116,22 @@ export default function Aside(props) {
             value={newPostData.body}
             name="body"
             onChange={handleFormData}
+            required
           />
-          <input
-            type="submit"
-            value="Add"
-            onClick={(e) => {
-              e.preventDefault();
-              props.addPost(newPostData);
-              setNewPostData({ title: "", body: "" });
-            }}
-          />
+          <div className="submit-container">
+            <input
+              type="submit"
+              value="Add"
+              onClick={(e) => {
+                e.preventDefault();
+                props.addPost(newPostData);
+                setNewPostData({title: "", body: ""});
+              }}
+            />
+          </div>
+          {console.log(props.addPostError)}
         </form>
-        <section>
-          {/* <button>All posts</button> */}
-          {/* <button>Fovorite posts</button> */}
-        </section>
-      </div>
+      </section>
     </StyledAside>
   );
 }
