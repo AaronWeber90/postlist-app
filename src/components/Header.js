@@ -24,7 +24,7 @@ const StyledHeader = styled.header`
   }
 `;
 
-export default function Header(props) {
+export default function Header() {
   return (
     <StyledHeader>
       <div>

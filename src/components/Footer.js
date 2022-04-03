@@ -14,7 +14,7 @@ const StyledFooter = styled.footer`
   }
 `;
 
-export default function Header(props) {
+export default function Header() {
   return (
     <StyledFooter>
       <div>by Aaron</div>

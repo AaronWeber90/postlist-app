@@ -66,7 +66,7 @@ const StyledAside = styled.aside`
   }
 `;
 
-export default function Aside(props) {
+export default function Aside({handleChange, searchQuery, addPost}) {
   const [newPostData, setNewPostData] = useState({
     title: "",
     body: "",
@@ -94,8 +94,8 @@ export default function Aside(props) {
             className="submit-btn"
             type="text"
             placeholder="eum et est..."
-            onChange={props.handleChange}
-            value={props.searchQuery}
+            onChange={handleChange}
+            value={searchQuery}
           />
         </form>
         <form>
@@ -124,12 +124,11 @@ export default function Aside(props) {
               value="Add"
               onClick={(e) => {
                 e.preventDefault();
-                props.addPost(newPostData);
+                addPost(newPostData);
                 setNewPostData({title: "", body: ""});
               }}
             />
           </div>
-          {console.log(props.addPostError)}
         </form>
       </section>
     </StyledAside>
