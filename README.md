@@ -1,3 +1,4 @@
+![screenshot](./public/screenshot.PNG)
 ## About this project
 
 For a coding challenge I created a simple website with the main task to manage posts.
