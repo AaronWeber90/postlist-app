@@ -46,7 +46,7 @@ export default function App() {
         behavior: "smooth",
       });
       const result = postsData.filter((post) => {
-        return post.title.includes(searchQuery.toLowerCase());
+        return post.title.includes(keyword.toLowerCase());
       });
       setFoundPosts(result);
     } else {
