@@ -39,7 +39,7 @@ export default function App() {
       });
   }, []);
 
-  function handleChange(event) {
+  function searchPosts(event) {
     const keyword = event.target.value;
     if (keyword) {
       mainRef.current.scrollIntoView({
@@ -55,7 +55,7 @@ export default function App() {
     setSearchQuery(keyword);
   }
 
-  function handleClick(id) {
+  function deletePost(id) {
     setPostsData((prevState) => prevState.filter((post) => post.id !== id));
     setFoundPosts((prevState) => prevState.filter((post) => post.id !== id));
   }
@@ -78,7 +78,7 @@ export default function App() {
       <Header />
       <StyledContainer ref={mainRef}>
         <Aside
-          handleChange={handleChange}
+          searchPosts={searchPosts}
           searchQuery={searchQuery}
           addPost={addPost}
         />
@@ -86,10 +86,10 @@ export default function App() {
         {searchQuery && !foundPosts.length && <NoPostContainer />}
         {!searchQuery.length
           ? postsData.map((post) => (
-              <Post key={post.id} {...post} onClick={handleClick} />
+              <Post key={post.id} {...post} onClick={deletePost} />
             ))
           : foundPosts.map((post) => (
-              <Post key={post.id} {...post} onClick={handleClick} />
+              <Post key={post.id} {...post} onClick={deletePost} />
             ))}
       </StyledContainer>
       <Footer />

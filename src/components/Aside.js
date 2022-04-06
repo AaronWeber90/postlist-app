@@ -66,7 +66,7 @@ const StyledAside = styled.aside`
   }
 `;
 
-export default function Aside({handleChange, searchQuery, addPost}) {
+export default function Aside({searchPosts, searchQuery, addPost}) {
   const [newPostData, setNewPostData] = useState({
     title: "",
     body: "",
@@ -94,7 +94,7 @@ export default function Aside({handleChange, searchQuery, addPost}) {
             className="submit-btn"
             type="text"
             placeholder="eum et est..."
-            onChange={handleChange}
+            onChange={searchPosts}
             value={searchQuery}
           />
         </form>
