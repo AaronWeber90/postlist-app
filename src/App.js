@@ -2,6 +2,7 @@ import {useEffect, useState, useRef} from "react";
 import styled from "styled-components";
 import GlobalStyle from "./globalStyles";
 import Header from "./components/Header";
+import useFetch from "./components/useFetch";
 import LoadingSpinner from "./components/LoadingSpinner";
 import NoPostContainer from "./components/NoPostContainer";
 import Post from "./components/Post";
@@ -28,16 +29,28 @@ export default function App() {
   const [foundPosts, setFoundPosts] = useState([]);
   const mainRef = useRef(null);
 
-  useEffect(() => {
-    setIsloading(true);
-    fetch("https://jsonplaceholder.typicode.com/posts")
-      .then((response) => response.json())
-      .then((data) => {
-        setPostsData(data);
-        setFoundPosts(data);
-        setIsloading(false);
-      });
-  }, []);
+  // useEffect(() => {
+  //   setIsloading(true);
+  //   fetch("https://jsonplaceholder.typicode.com/posts")
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       setPostsData(data);
+  //       setFoundPosts(data);
+  //       setIsloading(false);
+  //     });
+  // }, []);
+
+  const {data, loading, error} = useFetch(
+    "https://jsonplaceholder.typicode.com/posts"
+  );
+
+  if (error) {
+    console.log(error);
+  }
+
+  if (data) {
+    console.log(data);
+  }
 
   function searchPosts(event) {
     const keyword = event.target.value;
